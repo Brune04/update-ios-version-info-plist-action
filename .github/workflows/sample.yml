@@ -1,28 +1,34 @@
 name: sample
 
 on:
-  pull_request:
-    paths-ignore:
-      - '**.md'
-  push:
-    branches:
-      - main
-      - releases/*
-    paths-ignore:
-      - '**.md'
+    pull_request:
+        paths-ignore:
+            - "**.md"
+    push:
+        branches:
+            - main
+            - releases/*
+        paths-ignore:
+            - "**.md"
 
 jobs:
-  demo:
-    runs-on: macos-latest
-    name: Sample demo
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    local-version:
+        runs-on: macos-latest
+        name: Run local action version
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
-      - name: Update iOS version Info.plist
-        uses: damienaicheh/update-ios-version-info-plist-action@v1.0.0
-        with:
-          info-plist-path: './samples/Info.plist'
-          bundle-short-version-string: '2.0'
-          bundle-version: '2'
-          print-file: true
+            - name: Update Expo.plist
+              uses: ./
+              with:
+                  expo-plist-path: "./samples/Expo.plist"
+                  updates-release-channel: "dev-2.0"
+                  print-file: true
+
+            - name: Update Expo-1.plist
+              uses: ./
+              with:
+                  expo-plist-path: "./samples/Expo.plist"
+                  updates-release-channel: "dev-1.0"
+                  print-file: true

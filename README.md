@@ -1,33 +1,28 @@
-# Update iOS version Info.plist action
+# Update Updates Release Channel in Expo.plist
 
-This action update the `BundleShortVersionString` and `BundleVersion` properties of the Info.plist file for your iOS projects.
+This action update the `EXUpdatesReleaseChannel` properties of the Expo.plist file for your iOS projects.
 
 ## Inputs
 
-### `info-plist-path`
+### `expo-plist-path`
 
-**Required** The relative path for the Info.plist file.
+**Required** The relative path for the Expo.plist file.
 
-### `bundle-short-version-string` 
-  
-**Required** The CF Bundle Short Version String.
+### `updates-release-channel`
 
-###  `bundle-version`
-    
-**Required** The CF Bundle Version.
+**Required** The Expo Updates Release Channel.
 
-###  `print-file`
+### `print-file`
 
-Output the Info.plist file in console before and after update.
+Output the Expo.plist file in console before and after update.
 
 ## Usage
 
 ```yaml
-- name: Update Info.plist
-  uses: damienaicheh/update-ios-version-info-plist-action@v1.0.0
+- name: Update Expo.plist
+  uses: Brune04/update-ios-version-info-plist-action@v1.0.0
   with:
-    info-plist-path: './path_to_your/Info.plist'
-    bundle-short-version-string: '2.0'
-    bundle-version: '2'
-    print-file: true
+      info-plist-path: "./path_to_your/Expo.plist"
+      updates-release-channel: "dev-2.0"
+      print-file: true
 ```
