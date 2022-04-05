@@ -1,4 +1,4 @@
-name: "Update iOS version Expo.plist"
+name: "Update Updates Release Channel Expo.plist"
 description: "Update the Expo.plist file"
 author: "Brune04"
 inputs:
