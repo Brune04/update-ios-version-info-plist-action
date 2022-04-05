@@ -22,7 +22,7 @@ Output the Expo.plist file in console before and after update.
 - name: Update Expo.plist
   uses: Brune04/update-ios-version-info-plist-action@v1.0
   with:
-      info-plist-path: "./path_to_your/Expo.plist"
+      expo-plist-path: "./path_to_your/Expo.plist"
       updates-release-channel: "dev-2.0"
       print-file: true
 ```
