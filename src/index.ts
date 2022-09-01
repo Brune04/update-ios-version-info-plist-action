@@ -31,6 +31,8 @@ async function main(): Promise<void> {
             process.exit(1);
         }
 
+        let runtimeVersion: string = core.getInput("updates-runtime-version");
+
         if (printFile) {
             core.info("Before update:");
             await exec.exec("cat", [infoPlistPath]);
@@ -41,6 +43,9 @@ async function main(): Promise<void> {
 
         let obj = plist.parse(fileContent);
         obj["EXUpdatesReleaseChannel"] = updatesReleaseChannel;
+        if (runtimeVersion) {
+            obj["EXUpdatesRuntimeVersion"] = runtimeVersion;
+        }
 
         fs.chmodSync(infoPlistPath, "600");
         fs.writeFileSync(infoPlistPath, plist.build(obj));
@@ -51,7 +56,8 @@ async function main(): Promise<void> {
         }
 
         core.info(
-            `Expo.plist updated successfully with EXUpdatesReleaseChannel: ${updatesReleaseChannel}`
+            `Expo.plist updated successfully with EXUpdatesReleaseChannel: ${updatesReleaseChannel}
+            EXUpdatesRuntimeVersion: ${runtimeVersion}`
         );
     } catch (error: any) {
         core.setFailed(error.message);
