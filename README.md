@@ -24,7 +24,7 @@ Output the Expo.plist file in console before and after update.
 
 ```yaml
 - name: Update Expo.plist
-  uses: Brune04/update-ios-version-info-plist-action@v1.2
+  uses: Brune04/update-ios-version-info-plist-action@v1.3
   with:
       expo-plist-path: "./path_to_your/Expo.plist"
       updates-release-channel: "dev-2.0"

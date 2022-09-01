@@ -8,6 +8,9 @@ inputs:
     updates-release-channel:
         description: "The Expo Updates Release Channel."
         required: true
+    updates-runtime-version:
+        description: "The Expo Updates Runtime Version."
+        required: true
     print-file:
         description: "Output the Expo.plist file in console"
         required: false

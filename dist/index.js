@@ -60,6 +60,7 @@ function main() {
                 core.setFailed(`Updates Release Channel has no value: ${updatesReleaseChannel}. You must define it.`);
                 process.exit(1);
             }
+            let runtimeVersion = core.getInput("updates-runtime-version");
             if (printFile) {
                 core.info("Before update:");
                 yield exec.exec("cat", [infoPlistPath]);
@@ -68,13 +69,17 @@ function main() {
             core.debug(JSON.stringify(fileContent));
             let obj = plist.parse(fileContent);
             obj["EXUpdatesReleaseChannel"] = updatesReleaseChannel;
+            if (runtimeVersion) {
+                obj["EXUpdatesRuntimeVersion"] = runtimeVersion;
+            }
             fs.chmodSync(infoPlistPath, "600");
             fs.writeFileSync(infoPlistPath, plist.build(obj));
             if (printFile) {
                 core.info("After update:");
                 yield exec.exec("cat", [infoPlistPath]);
             }
-            core.info(`Expo.plist updated successfully with EXUpdatesReleaseChannel: ${updatesReleaseChannel}`);
+            core.info(`Expo.plist updated successfully with EXUpdatesReleaseChannel: ${updatesReleaseChannel}
+            EXUpdatesRuntimeVersion: ${runtimeVersion}`);
         }
         catch (error) {
             core.setFailed(error.message);
